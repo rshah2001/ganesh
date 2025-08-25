@@ -108,7 +108,20 @@
       .diya { width: 40px; height: 60px; }
     }
 
-    audio { display: none; }
+    /* Music button */
+    #playButton {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #ffd700;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,215,0,0.8);
+    }
   </style>
 </head>
 <body>
@@ -136,12 +149,30 @@
       <div class="diya"></div>
       <div class="diya"></div>
     </div>
+
+    <!-- Play Button (shows if autoplay blocked) -->
+    <button id="playButton">🎵 Play Ganesh Song</button>
   </div>
 
   <!-- Background Music -->
-  <audio autoplay loop>
+  <audio id="bg-music" autoplay loop>
     <source src="ganesh_song.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    const playButton = document.getElementById("playButton");
+
+    // Try autoplay, if blocked show button
+    music.play().catch(() => {
+      playButton.style.display = "inline-block";
+    });
+
+    playButton.addEventListener("click", () => {
+      music.play();
+      playButton.style.display = "none";
+    });
+  </script>
 </body>
 </html>
