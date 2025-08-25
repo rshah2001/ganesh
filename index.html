@@ -161,18 +161,22 @@
   </audio>
 
   <script>
-    const music = document.getElementById("bg-music");
-    const playButton = document.getElementById("playButton");
+  const music = document.getElementById("bg-music");
+  const playButton = document.getElementById("playButton");
 
-    // Try autoplay, if blocked show button
-    music.play().catch(() => {
-      playButton.style.display = "inline-block";
-    });
+  // Try autoplay, if blocked show button
+  music.play().catch(() => {
+    playButton.style.display = "inline-block";
+  });
 
-    playButton.addEventListener("click", () => {
-      music.play();
+  playButton.addEventListener("click", () => {
+    music.play();
+    playButton.innerText = "🎶 Playing...";
+    setTimeout(() => {
       playButton.style.display = "none";
-    });
-  </script>
+    }, 1500); // hide button after 1.5s
+  });
+</script>
+
 </body>
 </html>
